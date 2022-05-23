@@ -2,14 +2,14 @@ import tkinter as tk
 
 janela = tk.Tk()
 
-def criarNumero(valor):
+def criarNumero(numero):
 
     """
     Esta função cria o valor no Entry.
     :param valor: é o número que está no argumento da função lambda
 
     """
-    e_entry.insert('end', valor)
+    e_entry.insert('end', numero)
 
 
 def somar():
