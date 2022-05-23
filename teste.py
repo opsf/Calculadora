@@ -2,6 +2,7 @@ import tkinter as tk
 
 janela = tk.Tk()
 
+count = 0
 def criarNumero(numero):
 
     """
@@ -12,19 +13,43 @@ def criarNumero(numero):
     e_entry.insert('end', numero)
 
 
+
 def somar():
-    a = e_entry.get()
-    global f_numero
-    f_numero= int(a)
-    e_entry.delete(0, 'end')
+    global count
+    count = count +1
+    if count <= 1:
+        global p
+        p = int(e_entry.get())
+        e_entry.delete(0, 'end')
+        print(f'primeiro {p}')
+    else:
+        p = p + int(e_entry.get())
+        e_entry.delete(0, 'end')
+        e_entry.insert(0,p)
+        e_entry.delete(0, 'end')
+        print(f'segundo {p}')
 
 def resultado():
+
+    global p
+    global count
+
     b = int(e_entry.get())
     e_entry.delete(0, 'end')
-    e_entry.insert(0,f_numero+b)
+    print(f'valor de b em resultado é: {b}')
+    p = p+b
+    e_entry.insert(0,p)
+    count = 0
+    p=0
+
 
 def limpar():
     e_entry.delete(0, 'end')
+    global count
+    global p
+    count = 0
+    p = 0
+
 
 
 
@@ -43,7 +68,7 @@ bt7 = tk.Button(janela, text = "7", width=13, pady=20, command=lambda: criarNume
 bt8 = tk.Button(janela, text = "8", width=13, pady=20, command=lambda: criarNumero(8))
 bt9 = tk.Button(janela, text = "9", width=13, pady=20, command=lambda: criarNumero(9))
 bt0 = tk.Button(janela, text = "0", width=13, pady=20, command=lambda: criarNumero(0))
-bt_igual = tk.Button(janela, text="=", width=13, pady=20, command=resultado)
+bt_igual = tk.Button(janela, text="=", width=13, pady=20, command= resultado)
 bt_limpar = tk.Button(janela, text="LIMPAR", width=13, pady=20, command=limpar)
 bt_soma = tk.Button(janela, text="+", width=13, pady=20, command=somar)
 
